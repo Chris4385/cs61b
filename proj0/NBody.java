@@ -23,12 +23,12 @@ public class NBody{
         }
         return planetList;
     }
-    public static void drawBackground(String fileName, double universeRadius){
+    private static void drawBackground(String fileName, double universeRadius){
         StdDraw.setScale(-universeRadius, universeRadius);
         StdDraw.picture(0,0,fileName);
 //        StdDraw.show();
     }
-    public static void animation(double time, double dx, Planet[] planetList, String fileName, double universeRadius){
+    private static void animation(double time, double dx, Planet[] planetList, String fileName, double universeRadius){
         double[] xForces = new double [planetList.length];
         double[] yForces = new double [planetList.length];
 
@@ -50,7 +50,7 @@ public class NBody{
         }
 
     }
-    public static void toString(Planet[] planets, double  radius){
+    private static void toString(Planet[] planets, double  radius){
         StdOut.printf("%d\n", planets.length);
         StdOut.printf("%.2e\n", radius);
         for (int i = 0; i < planets.length; i++) {
