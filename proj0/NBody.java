@@ -9,8 +9,8 @@ public class NBody{
         In in = new In(fileName);
         int numberOfPlanets = in.readInt();
         double universeRadius = in.readDouble();
-        Planet[] planetList = new Planet[5];
-        for(int i = 0; i < 5; i++){
+        Planet[] planetList = new Planet[numberOfPlanets];
+        for(int i = 0; i < numberOfPlanets; i++){
             double xPos = in.readDouble();
             double yPos = in.readDouble();
             double xVel = in.readDouble();
