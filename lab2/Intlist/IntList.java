@@ -5,7 +5,7 @@ import java.util.Formatter;
  * with a large number of additional methods.
  *
  * @author P. N. Hilfinger, with some modifications by Josh Hug and melaniecebula
- *         [Do not modify this file.]
+ * [Do not modify this file.]
  */
 public class IntList {
     /**
@@ -29,7 +29,7 @@ public class IntList {
      * A List with null rest, and first = 0.
      */
     public IntList() {
-    /* NOTE: public IntList () { }  would also work. */
+        /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
 
@@ -81,32 +81,38 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+
+        if (A.rest == null) {
+            A.rest = B;
+
+        } else {
+            dcatenate(A.rest, B);
+        }
+        return A;
     }
 
     /**
      * Returns a list consisting of the elements of A followed by the
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
-    public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+    private static IntList copy(IntList L) {
+        if (L.rest == null) {
+            return new IntList(L.first, null);
+        } else {
+            return new IntList(L.first, copy(L.rest));
+        }
     }
 
+    public static IntList catenate(IntList A, IntList B) {
+        IntList copied = copy(A);
+        if (copied.rest == null) {
+            copied.rest = B;
+        } else {
+            copied.rest = catenate(copied.rest, B);
+        }
+        return copied;
 
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
     /**
