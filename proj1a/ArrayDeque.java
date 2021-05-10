@@ -97,6 +97,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
+
         T itemReturned = items[nextLast - 1];
         items[nextLast - 1] = null;
         size--;
@@ -122,7 +123,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        return items[index];
+        return items[index + nextFirst + 1];
     }
 
     public static void main(String[] args) {
