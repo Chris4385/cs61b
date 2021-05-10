@@ -44,37 +44,52 @@ public class ArrayDeque<T> {
     }
 
     private void resizeCapacity(int capacity) {
+
+
         T[] newItems = (T[]) new Object[capacity];
         int originalSize = items.length;
         int remainingSpace = capacity - originalSize;
         initialArrSize = capacity;
-        nextFirst = (remainingSpace / 2) - 1;
-        nextLast = (remainingSpace / 2) + originalSize;
-        System.arraycopy(items, 0, newItems, nextFirst + 1, originalSize);
+        int newNextFirst = (remainingSpace / 2) - 1;
+        int newNextLast = (remainingSpace / 2) + originalSize;
+        System.arraycopy(items, nextFirst + 1, newItems, newNextFirst + 1, originalSize - newNextFirst - 1);
+        System.arraycopy(items, 0, newItems, originalSize, originalSize - newNextFirst - 1);
+        nextFirst = newNextFirst;
+        nextLast = newNextLast;
         items = newItems;
+
+//        T[] newItems = (T[]) new Object[capacity];
+//        int originalSize = items.length;
+//        int remainingSpace = capacity - originalSize;
+//        initialArrSize = capacity;
+//        nextFirst = (remainingSpace / 2) - 1;
+//        nextLast = (remainingSpace / 2) + originalSize;
+//        System.arraycopy(items, 0, newItems, nextFirst + 1, originalSize);
+//        items = newItems;
     }
 
     private int maxArraySize(int x) {
         if (x == initialArrSize) {
             resizeCapacity(initialArrSize * 2);
         }
-        return x + 1;
+        return x;
     }
 
 
     public void addLast(T x) {
         //check the size and decide whether resizing is needed or not
-        size = maxArraySize(size);
+
         items[nextLast] = x;
         nextLast = resetToFront(nextLast + 1);
+        size = maxArraySize(size + 1);
 
     }
 
     public void addFirst(T x) {
         //check the size and decide whether resizing is needed or not
-        size = maxArraySize(size);
         items[nextFirst] = x;
         nextFirst = resetToEnd(nextFirst - 1);
+        size = maxArraySize(size + 1);
 
     }
 
