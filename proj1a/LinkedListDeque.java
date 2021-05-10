@@ -25,11 +25,11 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    public LinkedListDeque(T T) {
+    public LinkedListDeque(T item) {
         sentinelA = new Node<>(null, null, null);
         sentinelB = new Node<>(null, null, null);
 
-        Node<T> newData = new Node<>(T, sentinelA, sentinelB);
+        Node<T> newData = new Node<>(item, sentinelA, sentinelB);
         sentinelA.tail = newData;
         sentinelB.head = newData;
         size = 1;
@@ -48,15 +48,15 @@ public class LinkedListDeque<T> {
         }
     }
 
-    public void addFirst(T T) {
-        Node<T> data = new Node<>(T, sentinelA, sentinelA.tail);
+    public void addFirst(T item) {
+        Node<T> data = new Node<>(item, sentinelA, sentinelA.tail);
         sentinelA.tail = data;
         data.tail.head = data;
         size++;
     }
 
-    public void addLast(T T) {
-        Node<T> data = new Node<>(T, sentinelB.head, sentinelB);
+    public void addLast(T item) {
+        Node<T> data = new Node<>(item, sentinelB.head, sentinelB);
         sentinelB.head = data;
         data.head.tail = data;
         size++;
@@ -83,23 +83,25 @@ public class LinkedListDeque<T> {
         if (isEmpty()) {
             return null;
         }
+        Node<T> deletedNode = sentinelA.tail;
 
         Node<T> firstNodeAfterDelete = sentinelA.tail.tail;
         sentinelA.tail = firstNodeAfterDelete;
         firstNodeAfterDelete.head = sentinelA;
         size--;
-        return firstNodeAfterDelete.data;
+        return deletedNode.data;
     }
 
     public T removeLast() {
         if (isEmpty()) {
             return null;
         }
+        Node<T> deletedNode = sentinelB.head;
         Node<T> lastNodeAfterDelete = sentinelB.head.head;
         sentinelB.head = lastNodeAfterDelete;
         lastNodeAfterDelete.tail = sentinelB;
         size--;
-        return lastNodeAfterDelete.data;
+        return deletedNode.data;
     }
 
     public T get(int index) {
@@ -115,7 +117,7 @@ public class LinkedListDeque<T> {
         return p.data;
     }
 
-    private static <T> T getNodeRecursive(Node<T> p, int index) {
+    private static <Item> Item getNodeRecursive(Node<Item> p, int index) {
         if (index == 1) {
             return p.data;
         } else {
@@ -142,7 +144,7 @@ public class LinkedListDeque<T> {
 //        LL.addFirst(1000);
 //
 //        int a = LL.getRecursive(1);
-//        System.out.println("First T is: " + a + " and its total size is: " + LL.size());
+//        System.out.println("First item is: " + a + " and its total size is: " + LL.size());
 //    }
 
 }
