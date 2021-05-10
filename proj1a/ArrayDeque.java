@@ -1,32 +1,32 @@
-public class ArrayDeque<T> {
+public class ArrayDeque<Item> {
     private int size;
     private int nextFirst;
     private int nextLast;
     private int initialArrSize = 8;
 
-    private T[] items;
+    private Item[] items;
 
     public ArrayDeque() {
-        items = (T[]) new Object[initialArrSize];
+        items = (Item[]) new Object[initialArrSize];
         size = 0;
         int mid = initialArrSize / 2;
         nextFirst = mid - 1;
         nextLast = mid;
     }
 
-    public ArrayDeque(ArrayDeque<T> other) {
+    public ArrayDeque(ArrayDeque<Item> other) {
         nextFirst = other.nextFirst;
         nextLast = other.nextLast;
         size = other.initialArrSize;
-        items = (T[]) new Object[size];
+        items = (Item[]) new Object[size];
         System.arraycopy(other.items, 0, items, 0, size);
 
     }
 
     //if the index reaches the max limit of the array size, reset the index into 0
     private int resetToFront(int x) {
-        if (x > initialArrSize - 1) {
-            return 0;
+        if (x >= initialArrSize) {
+            return x - initialArrSize;
         } else {
             return x;
         }
@@ -43,12 +43,8 @@ public class ArrayDeque<T> {
         }
     }
 
-    private boolean ratioCheckPassed() {
-        return ((double) size / initialArrSize) >= 0.25;
-    }
-
     private void resizeCapacity(int capacity) {
-        T[] newItems = (T[]) new Object[capacity];
+        Item[] newItems = (Item[]) new Object[capacity];
         int originalSize = items.length;
         int remainingSpace = capacity - originalSize;
         initialArrSize = capacity;
@@ -66,7 +62,7 @@ public class ArrayDeque<T> {
     }
 
 
-    public void addLast(T x) {
+    public void addLast(Item x) {
         //check the size and decide whether resizing is needed or not
         size = maxArraySize(size);
         items[nextLast] = x;
@@ -74,7 +70,7 @@ public class ArrayDeque<T> {
 
     }
 
-    public void addFirst(T x) {
+    public void addFirst(Item x) {
         //check the size and decide whether resizing is needed or not
         size = maxArraySize(size);
         items[nextFirst] = x;
@@ -82,24 +78,26 @@ public class ArrayDeque<T> {
 
     }
 
-    public T removeFirst() {
+    public Item removeFirst() {
         if (isEmpty()) {
             return null;
         }
-        nextFirst = resetToFront(nextFirst + 1);
-        T itemReturned = items[nextFirst];
-        items[nextFirst] = null;
+
+        Item itemReturned = get(0);
+        items[resetToFront(nextFirst + 1)] = null;
+        nextFirst++;
         size--;
         return itemReturned;
     }
 
-    public T removeLast() {
+    public Item removeLast() {
         if (isEmpty()) {
             return null;
         }
-        nextLast = resetToEnd(nextLast - 1);
-        T itemReturned = items[nextLast];
-        items[nextLast] = null;
+
+        Item itemReturned = get(size);
+        items[resetToEnd(nextLast - 1)] = null;
+        nextLast--;
         size--;
 
 //        T itemReturned = items[nextLast - 1];
@@ -108,6 +106,7 @@ public class ArrayDeque<T> {
 //        nextLast--;
         return itemReturned;
     }
+
 
     public int size() {
         return size;
@@ -118,16 +117,17 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        for (T item : items) {
+        for (Item item : items) {
             System.out.println(item);
         }
     }
 
-    public T get(int index) {
+    public Item get(int index) {
         if (isEmpty()) {
             return null;
         }
-        return items[index + nextFirst + 1];
+        return items[resetToFront(index + nextFirst + 1)];
+
     }
 
     public static void main(String[] args) {
