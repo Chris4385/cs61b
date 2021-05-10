@@ -122,7 +122,7 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        return items[index - 1];
+        return items[index];
     }
 
     public static void main(String[] args) {
