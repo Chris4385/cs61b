@@ -84,8 +84,8 @@ public class ArrayDeque<T> {
         }
 
         T itemReturned = get(0);
-        items[resetToFront(nextFirst + 1)] = null;
-        nextFirst++;
+        nextFirst = resetToFront(nextFirst + 1);
+        items[nextFirst] = null;
         size--;
         return itemReturned;
     }
@@ -96,8 +96,8 @@ public class ArrayDeque<T> {
         }
 
         T itemReturned = get(size);
-        items[resetToEnd(nextLast - 1)] = null;
-        nextLast--;
+        nextLast = resetToEnd(nextLast - 1);
+        items[nextLast] = null;
         size--;
 
 //        T itemReturned = items[nextLast - 1];
