@@ -97,11 +97,15 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-
-        T itemReturned = items[nextLast - 1];
-        items[nextLast - 1] = null;
+        nextLast = resetToEnd(nextLast - 1);
+        T itemReturned = items[nextLast];
+        items[nextLast] = null;
         size--;
-        nextLast--;
+
+//        T itemReturned = items[nextLast - 1];
+//        items[nextLast - 1] = null;
+//        size--;
+//        nextLast--;
         return itemReturned;
     }
 
@@ -153,3 +157,5 @@ public class ArrayDeque<T> {
 
     }
 }
+
+
