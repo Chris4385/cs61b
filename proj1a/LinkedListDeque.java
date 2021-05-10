@@ -61,6 +61,7 @@ public class LinkedListDeque<Item> {
         data.head.tail = data;
         size++;
     }
+    
 
     public void printDeque() {
         Node<Item> p = sentinelA.tail;

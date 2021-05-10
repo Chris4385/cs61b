@@ -43,6 +43,10 @@ public class ArrayDeque<Item> {
         }
     }
 
+    private boolean ratioCheckPassed() {
+        return ((double) size / initialArrSize) >= 0.25;
+    }
+
     private void resizeCapacity(int capacity) {
         Item[] newItems = (Item[]) new Object[capacity];
         int originalSize = items.length;
@@ -55,7 +59,7 @@ public class ArrayDeque<Item> {
     }
 
     private int maxArraySize(int x) {
-        if (x == initialArrSize - 1) {
+        if (x == initialArrSize) {
             resizeCapacity(initialArrSize * 2);
         }
         return x + 1;
@@ -63,15 +67,41 @@ public class ArrayDeque<Item> {
 
 
     public void addLast(Item x) {
+        //check the size and decide whether resizing is needed or not
+        size = maxArraySize(size);
         items[nextLast] = x;
         nextLast = resetToFront(nextLast + 1);
-        size = maxArraySize(size);
+
     }
 
     public void addFirst(Item x) {
+        //check the size and decide whether resizing is needed or not
+        size = maxArraySize(size);
         items[nextFirst] = x;
         nextFirst = resetToEnd(nextFirst - 1);
-        size = maxArraySize(size);
+
+    }
+
+    public Item removeFirst() {
+        if (isEmpty()) {
+            return null;
+        }
+        Item itemReturned = items[nextFirst + 1];
+        items[nextFirst + 1] = null;
+        size--;
+        nextFirst++;
+        return itemReturned;
+    }
+
+    public Item removeLast() {
+        if (isEmpty()) {
+            return null;
+        }
+        Item itemReturned = items[nextLast - 1];
+        items[nextLast - 1] = null;
+        size--;
+        nextLast--;
+        return itemReturned;
     }
 
     public int size() {
