@@ -86,10 +86,10 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        T itemReturned = items[nextFirst + 1];
-        items[nextFirst + 1] = null;
+        nextFirst = resetToFront(nextFirst + 1);
+        T itemReturned = items[nextFirst];
+        items[nextFirst] = null;
         size--;
-        nextFirst++;
         return itemReturned;
     }
 
