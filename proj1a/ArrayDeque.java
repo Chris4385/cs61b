@@ -52,11 +52,12 @@ public class ArrayDeque<T> {
         initialArrSize = capacity;
         int newNextFirst = (remainingSpace / 2) - 1;
         int newNextLast = (remainingSpace / 2) + originalSize;
-        System.arraycopy(items, nextFirst + 1, newItems, newNextFirst + 1, originalSize - newNextFirst - 1);
-        System.arraycopy(items, 0, newItems, originalSize, originalSize - newNextFirst - 1);
+        System.arraycopy(items, nextFirst + 1, newItems, newNextFirst + 1, originalSize - nextLast);
+        System.arraycopy(items, 0, newItems, newNextFirst + 1 + originalSize - nextLast, nextLast);
         nextFirst = newNextFirst;
         nextLast = newNextLast;
         items = newItems;
+
 
 //        T[] newItems = (T[]) new Object[capacity];
 //        int originalSize = items.length;
@@ -109,11 +110,10 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-
-        T itemReturned = get(size);
+        size--;
+        T itemReturned = get(size - 1);
         nextLast = resetToEnd(nextLast - 1);
         items[nextLast] = null;
-        size--;
 
 //        T itemReturned = items[nextLast - 1];
 //        items[nextLast - 1] = null;
