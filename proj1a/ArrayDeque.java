@@ -1,24 +1,24 @@
-public class ArrayDeque<Item> {
+public class ArrayDeque<T> {
     private int size;
     private int nextFirst;
     private int nextLast;
     private int initialArrSize = 8;
 
-    private Item[] items;
+    private T[] items;
 
     public ArrayDeque() {
-        items = (Item[]) new Object[initialArrSize];
+        items = (T[]) new Object[initialArrSize];
         size = 0;
         int mid = initialArrSize / 2;
         nextFirst = mid - 1;
         nextLast = mid;
     }
 
-    public ArrayDeque(ArrayDeque<Item> other) {
+    public ArrayDeque(ArrayDeque<T> other) {
         nextFirst = other.nextFirst;
         nextLast = other.nextLast;
         size = other.initialArrSize;
-        items = (Item[]) new Object[size];
+        items = (T[]) new Object[size];
         System.arraycopy(other.items, 0, items, 0, size);
 
     }
@@ -44,7 +44,7 @@ public class ArrayDeque<Item> {
     }
 
     private void resizeCapacity(int capacity) {
-        Item[] newItems = (Item[]) new Object[capacity];
+        T[] newItems = (T[]) new Object[capacity];
         int originalSize = items.length;
         int remainingSpace = capacity - originalSize;
         initialArrSize = capacity;
@@ -62,7 +62,7 @@ public class ArrayDeque<Item> {
     }
 
 
-    public void addLast(Item x) {
+    public void addLast(T x) {
         //check the size and decide whether resizing is needed or not
         size = maxArraySize(size);
         items[nextLast] = x;
@@ -70,7 +70,7 @@ public class ArrayDeque<Item> {
 
     }
 
-    public void addFirst(Item x) {
+    public void addFirst(T x) {
         //check the size and decide whether resizing is needed or not
         size = maxArraySize(size);
         items[nextFirst] = x;
@@ -78,24 +78,24 @@ public class ArrayDeque<Item> {
 
     }
 
-    public Item removeFirst() {
+    public T removeFirst() {
         if (isEmpty()) {
             return null;
         }
 
-        Item itemReturned = get(0);
+        T itemReturned = get(0);
         items[resetToFront(nextFirst + 1)] = null;
         nextFirst++;
         size--;
         return itemReturned;
     }
 
-    public Item removeLast() {
+    public T removeLast() {
         if (isEmpty()) {
             return null;
         }
 
-        Item itemReturned = get(size);
+        T itemReturned = get(size);
         items[resetToEnd(nextLast - 1)] = null;
         nextLast--;
         size--;
@@ -117,12 +117,12 @@ public class ArrayDeque<Item> {
     }
 
     public void printDeque() {
-        for (Item item : items) {
+        for (T item : items) {
             System.out.println(item);
         }
     }
 
-    public Item get(int index) {
+    public T get(int index) {
         if (isEmpty()) {
             return null;
         }
