@@ -108,7 +108,7 @@ public class LinkedListDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        Node<T> p = sentinelA;
+        Node<T> p = sentinelA.tail;
         for (int i = 0; i <= index; i++) {
             if (i != index) {
                 p = p.tail;
@@ -118,7 +118,7 @@ public class LinkedListDeque<T> {
     }
 
     private static <Item> Item getNodeRecursive(Node<Item> p, int index) {
-        if (index == 1) {
+        if (index == 0) {
             return p.data;
         } else {
             return getNodeRecursive(p.tail, index - 1);

@@ -2,7 +2,7 @@ public class ArrayDeque<T> {
     private int size;
     private int nextFirst;
     private int nextLast;
-    private int initialArrSize = 4;
+    private int initialArrSize = 8;
 
     private T[] items;
 
