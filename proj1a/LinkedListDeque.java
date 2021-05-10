@@ -62,6 +62,14 @@ public class LinkedListDeque<Item> {
         size++;
     }
 
+    public void printDeque() {
+        Node<Item> p = sentinelA.tail;
+        for (int i = 0; i < size; i++) {
+            System.out.println(p.data);
+            p = p.tail;
+        }
+    }
+
     public boolean isEmpty() {
         return size == 0;
     }
