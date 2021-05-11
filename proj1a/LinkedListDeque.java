@@ -25,28 +25,28 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    public LinkedListDeque(T item) {
-        sentinelA = new Node<>(null, null, null);
-        sentinelB = new Node<>(null, null, null);
-
-        Node<T> newData = new Node<>(item, sentinelA, sentinelB);
-        sentinelA.tail = newData;
-        sentinelB.head = newData;
-        size = 1;
-
-    }
-
-    public LinkedListDeque(LinkedListDeque<T> other) {
-        this();
-        int otherSize = other.size();
-        Node<T> p = other.sentinelA.tail;
-
-        for (int i = 0; i < otherSize; i++) {
-
-            this.addLast(p.data);
-            p = p.tail;
-        }
-    }
+//    public LinkedListDeque(T item) {
+//        sentinelA = new Node<>(null, null, null);
+//        sentinelB = new Node<>(null, null, null);
+//
+//        Node<T> newData = new Node<>(item, sentinelA, sentinelB);
+//        sentinelA.tail = newData;
+//        sentinelB.head = newData;
+//        size = 1;
+//
+//    }
+//
+//    public LinkedListDeque(LinkedListDeque<T> other) {
+//        this();
+//        int otherSize = other.size();
+//        Node<T> p = other.sentinelA.tail;
+//
+//        for (int i = 0; i < otherSize; i++) {
+//
+//            this.addLast(p.data);
+//            p = p.tail;
+//        }
+//    }
 
     public void addFirst(T item) {
         Node<T> data = new Node<>(item, sentinelA, sentinelA.tail);

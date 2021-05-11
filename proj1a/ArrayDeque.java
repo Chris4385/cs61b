@@ -14,14 +14,14 @@ public class ArrayDeque<T> {
         nextLast = mid;
     }
 
-    public ArrayDeque(ArrayDeque<T> other) {
-        nextFirst = other.nextFirst;
-        nextLast = other.nextLast;
-        size = other.initialArrSize;
-        items = (T[]) new Object[size];
-        System.arraycopy(other.items, 0, items, 0, size);
-
-    }
+//    public ArrayDeque(ArrayDeque<T> other) {
+//        nextFirst = other.nextFirst;
+//        nextLast = other.nextLast;
+//        size = other.initialArrSize;
+//        items = (T[]) new Object[size];
+//        System.arraycopy(other.items, 0, items, 0, size);
+//
+//    }
 
     //if the index reaches the max limit of the array size, reset the index into 0
     private int resetToFront(int x) {
@@ -52,7 +52,8 @@ public class ArrayDeque<T> {
         int newNextFirst = (remainingSpace / 2) - 1;
         int newNextLast = (remainingSpace / 2) + originalSize;
         int resetNextFirst = resetToFront(nextFirst + 1);
-        System.arraycopy(items, resetNextFirst, newItems, newNextFirst + 1, originalSize - nextLast);
+        System.arraycopy(items, resetNextFirst, newItems,
+                newNextFirst + 1, originalSize - nextLast);
         System.arraycopy(items, 0, newItems, newNextFirst + 1 + originalSize - nextLast, nextLast);
         initialArrSize = capacity;
         nextFirst = newNextFirst;
@@ -60,7 +61,7 @@ public class ArrayDeque<T> {
         items = newItems;
     }
 
-    public void resizeDown(int capacity) {
+    private void resizeDown(int capacity) {
         T[] newItems = (T[]) new Object[capacity];
 
         int originalSize = items.length;
@@ -140,7 +141,7 @@ public class ArrayDeque<T> {
         return size == 0;
     }
 
-    public boolean resizeDownNeeded() {
+    private boolean resizeDownNeeded() {
         double usageRatio = (double) size / initialArrSize;
         return initialArrSize >= 16 && usageRatio < 0.25;
     }
@@ -160,81 +161,6 @@ public class ArrayDeque<T> {
     }
 
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
-//        ArrayDeque.addFirst(0);
-//        ArrayDeque.addLast(1);
-//        ArrayDeque.addLast(2);
-//        ArrayDeque.addFirst(3);
-//        ArrayDeque.addLast(4);
-//        ArrayDeque.addFirst(5);
-//        ArrayDeque.get(1);
-//        ArrayDeque.removeFirst();
-//        ArrayDeque.addLast(8);
-//        ArrayDeque.addLast(9);
-//        ArrayDeque.addLast(10);
-//        ArrayDeque.removeFirst();
-//        ArrayDeque.removeLast();
-//        ArrayDeque.get(2);
-//        ArrayDeque.removeFirst();
-//        ArrayDeque.removeFirst();
-//        ArrayDeque.get(3);
-//        ArrayDeque.get(2);
-//        ArrayDeque.addLast(18);
-//        ArrayDeque.removeFirst();
-//        ArrayDeque.removeFirst();
-//        ArrayDeque.get(2);
-
-//        ArrayDeque.addFirst(0);
-//        ArrayDeque.removeLast();
-//        ArrayDeque.addFirst(2);
-//        ArrayDeque.addFirst(3);
-//        ArrayDeque.addFirst(4);
-//        ArrayDeque.addLast(5);
-//        ArrayDeque.removeLast();
-//        ArrayDeque.get(0);
-//        ArrayDeque.addLast(8);
-//        ArrayDeque.addLast(9);
-//        ArrayDeque.addFirst(10);
-//        ArrayDeque.addFirst(11);
-//        ArrayDeque.addFirst(12);
-//        ArrayDeque.removeFirst();
-//        ArrayDeque.removeLast();
-//        ArrayDeque.removeFirst();
-//        ArrayDeque.removeLast();
-//        ArrayDeque.removeFirst();
-//        ArrayDeque.removeLast();
-//        ArrayDeque.addFirst(19);
-//        ArrayDeque.removeFirst();
-//        ArrayDeque.get(0);
-//        ArrayDeque.addLast(22);
-//        ArrayDeque.removeLast();
-
-        ArrayDeque.addFirst(1);
-        ArrayDeque.addFirst(2);
-        ArrayDeque.addFirst(3);
-        ArrayDeque.addFirst(4);
-        ArrayDeque.addFirst(5);
-        ArrayDeque.addFirst(6);
-        ArrayDeque.addFirst(7);
-        ArrayDeque.addFirst(8);
-
-        ArrayDeque.removeFirst();
-        ArrayDeque.removeFirst();
-        ArrayDeque.removeFirst();
-        ArrayDeque.removeFirst();
-        ArrayDeque.removeFirst();
-        ArrayDeque.removeFirst();
-        ArrayDeque.removeFirst();
-        ArrayDeque.removeFirst();
-//        ArrayDeque.addFirst(8);
-//        ArrayDeque.addFirst(9);
-//        ArrayDeque.addFirst(10);
-//        ArrayDeque.addFirst(11);
-//        ArrayDeque.addFirst(12);
-//        ArrayDeque.addFirst(13);
-//        ArrayDeque.addFirst(14);
-    }
 }
 
 
