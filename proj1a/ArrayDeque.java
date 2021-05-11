@@ -111,7 +111,7 @@ public class ArrayDeque<T> {
             return null;
         }
         size--;
-        T itemReturned = get(size - 1);
+        T itemReturned = get(size);
         nextLast = resetToEnd(nextLast - 1);
         items[nextLast] = null;
 
