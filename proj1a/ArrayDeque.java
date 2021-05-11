@@ -66,7 +66,7 @@ public class ArrayDeque<T> {
         int originalSize = items.length;
         int remainingSpace = capacity / 2;
         int newNextFirst = (remainingSpace / 2) - 1;
-        int newNextLast = (remainingSpace / 2) + remainingSpace;
+        int newNextLast = (remainingSpace / 2) + size;
         int resetNextFirst = resetToFront(nextFirst + 1);
         System.arraycopy(items, resetNextFirst, newItems, newNextFirst + 1, size);
 //        System.arraycopy(items, 0, newItems, newNextFirst + 1 + capacity - nextLast, nextLast);
@@ -161,36 +161,31 @@ public class ArrayDeque<T> {
 
 
     public static void main(String[] args) {
-        ArrayDeque<Integer> L = new ArrayDeque<>();
-        L.addFirst(1);
-        L.addFirst(2);
-        L.addFirst(3);
-        L.addFirst(4);
-        L.addFirst(5);
-        L.addFirst(6);
-
-        L.addLast(100);
-        L.addLast(200);
-        L.addLast(300);
-        L.addLast(400);
-        L.addLast(500);
-
-        L.addFirst(7);
-        L.addFirst(8);
-        L.addFirst(9);
-        L.addFirst(10);
-        L.addFirst(11);
-
-        L.removeLast();
-        L.removeLast();
-        L.removeLast();
-        L.removeLast();
-        L.removeLast();
-        L.removeLast();
-        L.removeLast();
-        L.removeLast();
-        L.removeLast();
-
+        ArrayDeque<Integer> ArrayDeque = new ArrayDeque<>();
+        ArrayDeque.addFirst(0);
+        ArrayDeque.removeLast();
+        ArrayDeque.addFirst(2);
+        ArrayDeque.addFirst(3);
+        ArrayDeque.addFirst(4);
+        ArrayDeque.addLast(5);
+        ArrayDeque.removeLast();
+        int a = ArrayDeque.get(0);
+        ArrayDeque.addLast(8);
+        ArrayDeque.addLast(9);
+        ArrayDeque.addFirst(10);
+        ArrayDeque.addFirst(11);
+        ArrayDeque.addFirst(12);
+        ArrayDeque.removeFirst();
+        ArrayDeque.removeLast();
+        ArrayDeque.removeFirst();
+        ArrayDeque.removeLast();
+        ArrayDeque.removeFirst();
+        ArrayDeque.removeLast();
+        ArrayDeque.addFirst(19);
+        ArrayDeque.removeFirst();
+        ArrayDeque.get(0);
+        ArrayDeque.addLast(22);
+        ArrayDeque.removeLast();
     }
 }
 
