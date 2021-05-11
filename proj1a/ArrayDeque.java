@@ -110,10 +110,11 @@ public class ArrayDeque<T> {
         if (isEmpty()) {
             return null;
         }
-        size--;
-        T itemReturned = get(size);
+        T itemReturned = get(size - 1);
         nextLast = resetToEnd(nextLast - 1);
         items[nextLast] = null;
+        size--;
+
 
 //        T itemReturned = items[nextLast - 1];
 //        items[nextLast - 1] = null;
