@@ -56,7 +56,6 @@ public class LinkedListDequeTest {
         System.out.println("Printing out deque: ");
         lld1.printDeque();
         printTestStatus(passed);
-		
     }
 
     /**
