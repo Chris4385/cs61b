@@ -49,11 +49,11 @@ public class ArrayDeque<T> {
         T[] newItems = (T[]) new Object[capacity];
         int originalSize = items.length;
         int remainingSpace = capacity - originalSize;
-        initialArrSize = capacity;
         int newNextFirst = (remainingSpace / 2) - 1;
         int newNextLast = (remainingSpace / 2) + originalSize;
-        System.arraycopy(items, nextFirst + 1, newItems, newNextFirst + 1, originalSize - nextLast);
+        System.arraycopy(items, resetToFront(nextFirst + 1), newItems, newNextFirst + 1, originalSize - nextLast);
         System.arraycopy(items, 0, newItems, newNextFirst + 1 + originalSize - nextLast, nextLast);
+        initialArrSize = capacity;
         nextFirst = newNextFirst;
         nextLast = newNextLast;
         items = newItems;
