@@ -51,7 +51,8 @@ public class ArrayDeque<T> {
         int remainingSpace = capacity - originalSize;
         int newNextFirst = (remainingSpace / 2) - 1;
         int newNextLast = (remainingSpace / 2) + originalSize;
-        System.arraycopy(items, resetToFront(nextFirst + 1), newItems, newNextFirst + 1, originalSize - nextLast);
+        int resetNextFirst = resetToFront(nextFirst + 1);
+        System.arraycopy(items, resetNextFirst, newItems, newNextFirst + 1, originalSize - nextLast);
         System.arraycopy(items, 0, newItems, newNextFirst + 1 + originalSize - nextLast, nextLast);
         initialArrSize = capacity;
         nextFirst = newNextFirst;

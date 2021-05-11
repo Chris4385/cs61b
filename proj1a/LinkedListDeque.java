@@ -38,10 +38,10 @@ public class LinkedListDeque<T> {
 
     public LinkedListDeque(LinkedListDeque<T> other) {
         this();
-        int size = other.size();
+        int otherSize = other.size();
         Node<T> p = other.sentinelA.tail;
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < otherSize; i++) {
 
             this.addLast(p.data);
             p = p.tail;
