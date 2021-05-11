@@ -58,16 +58,22 @@ public class ArrayDeque<T> {
         nextFirst = newNextFirst;
         nextLast = newNextLast;
         items = newItems;
+    }
 
+    public void resizeDown(int capacity) {
+        T[] newItems = (T[]) new Object[capacity];
+        initialArrSize = capacity;
+        int originalSize = items.length;
+        int remainingSpace = capacity / 2;
+        int newNextFirst = (remainingSpace / 2) - 1;
+        int newNextLast = (remainingSpace / 2) + remainingSpace;
+        int resetNextFirst = resetToFront(nextFirst + 1);
+        System.arraycopy(items, resetNextFirst, newItems, newNextFirst + 1, size);
+//        System.arraycopy(items, 0, newItems, newNextFirst + 1 + capacity - nextLast, nextLast);
 
-//        T[] newItems = (T[]) new Object[capacity];
-//        int originalSize = items.length;
-//        int remainingSpace = capacity - originalSize;
-//        initialArrSize = capacity;
-//        nextFirst = (remainingSpace / 2) - 1;
-//        nextLast = (remainingSpace / 2) + originalSize;
-//        System.arraycopy(items, 0, newItems, nextFirst + 1, originalSize);
-//        items = newItems;
+        nextFirst = newNextFirst;
+        nextLast = newNextLast;
+        items = newItems;
     }
 
     private int maxArraySize(int x) {
@@ -104,6 +110,9 @@ public class ArrayDeque<T> {
         nextFirst = resetToFront(nextFirst + 1);
         items[nextFirst] = null;
         size--;
+        if (resizeDownNeeded()) {
+            resizeDown(initialArrSize / 2);
+        }
         return itemReturned;
     }
 
@@ -115,12 +124,10 @@ public class ArrayDeque<T> {
         nextLast = resetToEnd(nextLast - 1);
         items[nextLast] = null;
         size--;
+        if (resizeDownNeeded()) {
+            resizeDown(initialArrSize / 2);
+        }
 
-
-//        T itemReturned = items[nextLast - 1];
-//        items[nextLast - 1] = null;
-//        size--;
-//        nextLast--;
         return itemReturned;
     }
 
@@ -131,6 +138,11 @@ public class ArrayDeque<T> {
 
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    public boolean resizeDownNeeded() {
+        double usageRatio = (double) size / initialArrSize;
+        return initialArrSize >= 16 && usageRatio < 0.25;
     }
 
     public void printDeque() {
@@ -146,6 +158,7 @@ public class ArrayDeque<T> {
         return items[resetToFront(index + nextFirst + 1)];
 
     }
+
 
     public static void main(String[] args) {
         ArrayDeque<Integer> L = new ArrayDeque<>();
@@ -168,9 +181,15 @@ public class ArrayDeque<T> {
         L.addFirst(10);
         L.addFirst(11);
 
-        L.addLast(600);
-
-        L.printDeque();
+        L.removeLast();
+        L.removeLast();
+        L.removeLast();
+        L.removeLast();
+        L.removeLast();
+        L.removeLast();
+        L.removeLast();
+        L.removeLast();
+        L.removeLast();
 
     }
 }
