@@ -17,21 +17,21 @@ public class TestPalindrome {
         assertEquals("persiflage", actual);
     }
 
-    @Test
-    public void testIsEven() {
-        boolean result = Palindrome.isEven("hello");
-        assertFalse("This is NOT an even numbered string", result);
-    }
+//    @Test
+//    public void testIsEven() {
+//        boolean result = Palindrome.isEven("hello");
+//        assertFalse("This is NOT an even numbered string", result);
+//    }
 
-    @Test
-    public void testUpperLimitForLooping() {
-        int upperLimit = palindrome.setUpperLimitForLooping("happy");
-        int upperLimit1 = palindrome.setUpperLimitForLooping("ha");
-        int upperLimit2 = palindrome.setUpperLimitForLooping("happy-i");
-        assertEquals(upperLimit, 2);
-        assertEquals(upperLimit1, 1);
-        assertEquals(upperLimit2, 3);
-    }
+//    @Test
+//    public void testUpperLimitForLooping() {
+//        int upperLimit = palindrome.setUpperLimitForLooping("happy");
+//        int upperLimit1 = palindrome.setUpperLimitForLooping("ha");
+//        int upperLimit2 = palindrome.setUpperLimitForLooping("happy-i");
+//        assertEquals(upperLimit, 2);
+//        assertEquals(upperLimit1, 1);
+//        assertEquals(upperLimit2, 3);
+//    }
 
     @Test
     public void testIsPalindrome() {
