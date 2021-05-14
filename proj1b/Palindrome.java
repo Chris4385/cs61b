@@ -9,12 +9,12 @@ public class Palindrome {
         return d;
     }
 
-    public static boolean isEven(String word) {
+    private static boolean isEven(String word) {
         int wordSize = word.length();
         return wordSize % 2 == 0;
     }
 
-    public int setUpperLimitForLooping(String word) {
+    private int setUpperLimitForLooping(String word) {
         int strLength = word.length();
         return strLength / 2;
     }
