@@ -9,6 +9,7 @@ public class OffByOne implements CharacterComparator {
         } else {
             n1 = x;
             n2 = y;
+            
         }
         int result = Math.abs(n1 - n2);
         return result == 1;
