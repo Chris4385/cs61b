@@ -9,21 +9,12 @@ public class Palindrome {
         return d;
     }
 
-    private static boolean isEven(String word) {
-        int wordSize = word.length();
-        return wordSize % 2 == 0;
-    }
-
-    private int setUpperLimitForLooping(String word) {
-        int strLength = word.length();
-        return strLength / 2;
-    }
 
     public boolean isPalindrome(String word) {
 
         Deque d = wordToDeque(word);
         int dequeSize = d.size();
-        int upperLimit = setUpperLimitForLooping(word);
+        int upperLimit = word.length() / 2;
 
         if (dequeSize <= 1) {
             return true;
@@ -44,7 +35,7 @@ public class Palindrome {
 
         Deque<Character> d = wordToDeque(word);
         int dequeSize = d.size();
-        int upperLimit = setUpperLimitForLooping(word);
+        int upperLimit = word.length() / 2;
 
         if (dequeSize <= 1) {
             return true;

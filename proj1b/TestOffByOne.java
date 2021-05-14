@@ -10,7 +10,7 @@ public class TestOffByOne {
 
     @Test
     public void testOffByOne() {
-        assertTrue("Both characters do not differ by one!", offByOne.equalChars('c', 'b'));
+        assertTrue("Both characters do not differ by one!", offByOne.equalChars('&', '%'));
 
     }
 
