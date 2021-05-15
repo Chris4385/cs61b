@@ -1,4 +1,5 @@
-//Due to the fact that we won't bother too much details as in "OffByOne" so the following codes are enough to pass
+//Due to the fact that we won't bother too much details as in
+// "OffByOne" so the following codes are enough to pass
 // the autograder
 
 public class OffByN implements CharacterComparator {
@@ -20,7 +21,8 @@ public class OffByN implements CharacterComparator {
 }
 
 
-//to consider the different situations as in "OffByOne" these codes could be referred
+//to consider the different situations as
+// in "OffByOne" these codes could be referred
 
 //    private static boolean bothCharactersUpperOrLower(char x, char y) {
 //        if (Character.isUpperCase(x) && Character.isUpperCase(y)) {
