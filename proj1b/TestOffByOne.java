@@ -10,13 +10,28 @@ public class TestOffByOne {
     static CharacterComparator offByOne = new OffByOne();
 
     @Test
-    public void testOffByOne() {
-        assertTrue("Both characters do not differ by one!", offByOne.equalChars('8', '7'));
-        assertTrue("Both characters do not differ by one!", offByOne.equalChars('a', 'b'));
-        assertTrue("Both characters do not differ by one!", offByOne.equalChars('b', 'a'));
-        assertTrue("Both characters do not differ by one!", offByOne.equalChars('%', '&'));
-        assertFalse("Both characters do not differ by one!", offByOne.equalChars('a', 'B'));
+    public void testEqualChars1() {
+        assertFalse(offByOne.equalChars('a', 'a'));
+    }
 
+    @Test
+    public void testEqualChars2() {
+        assertTrue(offByOne.equalChars('a', 'b'));
+    }
+
+    @Test
+    public void testEqualChars3() {
+        assertTrue(offByOne.equalChars('b', 'a'));
+    }
+
+    @Test
+    public void testEqualChars4() {
+        assertTrue(offByOne.equalChars('&', '%'));
+    }
+
+    @Test
+    public void testEqualChars5() {
+        assertFalse(offByOne.equalChars('b', 'A'));
     }
 
 }
