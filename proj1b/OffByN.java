@@ -5,17 +5,28 @@ public class OffByN implements CharacterComparator {
         steps = N;
     }
 
+    private static boolean bothCharactersUpperOrLower(char x, char y) {
+        if (Character.isUpperCase(x) && Character.isUpperCase(y)) {
+            return true;
+        } else if (Character.isLowerCase(x) && Character.isLowerCase(y)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private static boolean bothCharactersAreLetters(char x, char y) {
+        return Character.isLetter(x) && Character.isLetter(y);
+    }
+
     @Override
     public boolean equalChars(char x, char y) {
-        int n1, n2;
-        if (Character.isLetter(x) && Character.isLetter(y)) {
-            n1 = Character.toLowerCase(x);
-            n2 = Character.toLowerCase(y);
-        } else {
-            n1 = x;
-            n2 = y;
+        if (bothCharactersAreLetters(x, y)) {
+            if (!bothCharactersUpperOrLower(x, y)) {
+                return false;
+            }
         }
-        int result = Math.abs(n1 - n2);
+        int result = Math.abs((int) x - (int) y);
         return result == steps;
     }
 
