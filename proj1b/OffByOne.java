@@ -3,11 +3,7 @@ public class OffByOne implements CharacterComparator {
     private static boolean bothCharactersUpperOrLower(char x, char y) {
         if (Character.isUpperCase(x) && Character.isUpperCase(y)) {
             return true;
-        } else if (Character.isLowerCase(x) && Character.isLowerCase(y)) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return Character.isLowerCase(x) && Character.isLowerCase(y);
     }
 
     private static boolean bothCharactersAreLetters(char x, char y) {
