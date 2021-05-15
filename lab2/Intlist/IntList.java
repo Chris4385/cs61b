@@ -99,7 +99,7 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     private static IntList copy(IntList L) {
-
+        
         if (L.rest == null) {
             return new IntList(L.first, null);
         } else {
