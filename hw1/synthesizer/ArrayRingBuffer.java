@@ -80,7 +80,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
             int oriFirst = resetToFront(first + 1);
             return rb[oriFirst];
         } else {
-            return null;
+            throw new RuntimeException("Ring buffer underflow");
         }
     }
 
