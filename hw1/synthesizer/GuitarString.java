@@ -32,13 +32,12 @@ public class GuitarString<T> extends ArrayRingBuffer<T> {
         // TODO: Dequeue everything in the buffer, and replace it with random numbers
         //       between -0.5 and 0.5. You can get such a number by using:
         //       double r = Math.random() - 0.5;
-        while (!buffer.isEmpty()) {
-            buffer.dequeue();
-        }
-        while (!buffer.isFull()) {
+        for (int i = 0; i < capacity; i++) {
             double r = Math.random() - 0.5;
             buffer.enqueue(r);
         }
+
+
         //
         //       Make sure that your random numbers are different from each other.
     }
@@ -50,17 +49,16 @@ public class GuitarString<T> extends ArrayRingBuffer<T> {
         // TODO: Dequeue the front sample and enqueue a new sample that is
         //       the average of the two multiplied by the DECAY factor.
         //       Do not call StdAudio.play().
-        while (true) {
-            if (!buffer.isEmpty()) {
-                Double result1 = buffer.peek();
-                buffer.dequeue();
-                Double result2 = buffer.peek();
 
-                Double newValue = DECAY * (0.5 * (result1 + result2));
-                buffer.enqueue(newValue);
-            }
 
-        }
+        Double result1 = buffer.peek();
+        buffer.dequeue();
+        Double result2 = buffer.peek();
+
+        Double newValue = DECAY * (0.5 * (result1 + result2));
+        buffer.enqueue(newValue);
+
+
     }
 
     /* Return the double at the front of the buffer. */
