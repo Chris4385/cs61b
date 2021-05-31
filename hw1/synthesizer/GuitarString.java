@@ -51,11 +51,15 @@ public class GuitarString<T> extends ArrayRingBuffer<T> {
         //       the average of the two multiplied by the DECAY factor.
         //       Do not call StdAudio.play().
         while (true) {
-            Double result1 = buffer.peek();
-            buffer.dequeue();
-            Double result2 = buffer.peek();
-            Double newValue = DECAY * (0.5 * (result1 + result2));
-            buffer.enqueue(newValue);
+            if (!buffer.isEmpty()) {
+                Double result1 = buffer.peek();
+                buffer.dequeue();
+                Double result2 = buffer.peek();
+
+                Double newValue = DECAY * (0.5 * (result1 + result2));
+                buffer.enqueue(newValue);
+            }
+
         }
     }
 
