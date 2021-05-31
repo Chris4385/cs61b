@@ -19,7 +19,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         this.capacity = capacity;
         first = capacity / 2 - 1;
         last = capacity / 2;
-        rb = (T[]) new Object[capacity];
+        this.rb = (T[]) new Object[capacity];
     }
 
     /**
@@ -27,20 +27,20 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
      * throw new RuntimeException("Ring buffer overflow"). Exceptions
      * covered Monday.
      */
-    private int resetToFront(int last) {
-        if (last > capacity - 1) {
+    private int resetToFront(int lastMove) {
+        if (lastMove > capacity - 1) {
             return 0;
         } else {
-            return last;
+            return lastMove;
         }
 
     }
 
-    private int resetToBack(int first) {
-        if (first < 0) {
+    private int resetToBack(int firstMove) {
+        if (firstMove < 0) {
             return capacity - 1;
         } else {
-            return first;
+            return firstMove;
         }
 
     }
