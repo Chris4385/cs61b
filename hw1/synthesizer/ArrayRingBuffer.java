@@ -1,6 +1,8 @@
 // TODO: Make sure to make this class a part of the synthesizer package
 package synthesizer;
 
+import java.util.Iterator;
+
 //TODO: Make sure to make this class and all of its methods public
 //TODO: Make sure to make this class extend AbstractBoundedQueue<t>
 public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
@@ -25,6 +27,33 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         first = capacity / 2 - 1;
         last = capacity / 2;
         rb = (T[]) new Object[capacity];
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new GuitarIterator<>();
+    }
+
+    private class GuitarIterator<T> implements Iterator<T> {
+        private int currPos;
+
+        public GuitarIterator() {
+            currPos = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currPos < capacity;
+        }
+
+        @Override
+        public T next() {
+
+            T returned = (T) rb[currPos];
+            currPos++;
+
+            return returned;
+        }
     }
 
     /**
