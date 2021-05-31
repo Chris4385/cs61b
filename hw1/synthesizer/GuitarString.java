@@ -1,8 +1,7 @@
-// TODO: Make sure to make this class a part of the synthesizer package
 package synthesizer;
 
 //Make sure this class is public
-public class GuitarString<T> extends ArrayRingBuffer<T> {
+public class GuitarString extends ArrayRingBuffer {
     /**
      * Constants. Do not change. In case you're curious, the keyword final means
      * the values cannot be changed at runtime. We'll discuss this and other topics
@@ -51,8 +50,7 @@ public class GuitarString<T> extends ArrayRingBuffer<T> {
         //       Do not call StdAudio.play().
 
 
-        Double result1 = buffer.peek();
-        buffer.dequeue();
+        Double result1 = buffer.dequeue();
         Double result2 = buffer.peek();
 
         Double newValue = DECAY * (0.5 * (result1 + result2));

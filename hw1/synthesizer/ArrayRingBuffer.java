@@ -22,33 +22,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         rb = (T[]) new Object[capacity];
     }
 
-    @Override
-    public Iterator<T> iterator() {
-        return new GuitarIterator<>();
-    }
-
-    private class GuitarIterator<T> implements Iterator<T> {
-        private int currPos;
-
-        public GuitarIterator() {
-            currPos = 0;
-        }
-
-        @Override
-        public boolean hasNext() {
-            return currPos < capacity;
-        }
-
-        @Override
-        public T next() {
-
-            T returned = (T) rb[currPos];
-            currPos++;
-
-            return returned;
-        }
-    }
-
     /**
      * Adds x to the end of the ring buffer. If there is no room, then
      * throw new RuntimeException("Ring buffer overflow"). Exceptions
@@ -92,7 +65,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         if (!isEmpty()) {
             first = resetToFront(++first);
             T returned = rb[first];
-//            rb[first] = null;
             fillCount--;
             return returned;
         } else {
@@ -113,5 +85,34 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     }
 
 
-    // TODO: When you get to part 5, implement the needed code to support iteration.
+    @Override
+    public Iterator<T> iterator() {
+        return new GuitarIterator<>();
+    }
+
+    private class GuitarIterator<T> implements Iterator<T> {
+        private int currPos;
+        private int count;
+
+        public GuitarIterator() {
+            currPos = resetToFront(first + 1);
+            count = 0;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return count != capacity;
+        }
+
+        @Override
+        public T next() {
+
+            T returned = (T) rb[currPos];
+            currPos = resetToFront(currPos + 1);
+            count++;
+            return returned;
+        }
+    }
+
+ 
 }
